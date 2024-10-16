@@ -1,0 +1,16 @@
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.eraseTask {
+    visibility: hidden;
+    cursor: pointer;
+    color: red;
+}
+
+.todo-item:hover .eraseTask {
+    visibility: visible;
+}

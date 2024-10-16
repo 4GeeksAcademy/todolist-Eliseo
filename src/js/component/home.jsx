@@ -1,26 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
+import TodoInput from "./TodoInput";
+import TodoList from "./TodoList";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+function App() {
+    const [tasks, setTasks] = useState([]);
 
-//create your first component
-const Home = () => {
-	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
-};
+    const addTask = (task) => {
+        if (task.trim()) {
+            setTasks([...tasks, task]);
+        }
+    };
 
-export default Home;
+    const deleteTask = (index) => {
+        setTasks(tasks.filter((_, i) => i !== index));
+    };
+
+    return (
+        <div className="app">
+            <div className="card px-5 py-2 w-50 mx-auto">
+                <h1 className="text-center">todos</h1>
+                <TodoInput addTask={addTask} />
+                <TodoList tasks={tasks} deleteTask={deleteTask} />
+				<p className="">{tasks.length} item left</p>
+            </div>
+        </div>
+    );
+}
+
+export default App;
